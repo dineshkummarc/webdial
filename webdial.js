@@ -39,7 +39,7 @@ function WebDial(canvas) {
         var st = sun.sidereal_time_greenwich(jd);
         var geo = sun.equ_to_geo(equ.ra, equ.dec, st);
         console.debug("jd:", jd, "epsilon:", epsilon, "geometric_lon:",
-                      geometric_lon, "equ:", equ, "geo:", geo);
+                      geometric_lon, "equ:", equ, "geo:", geo, "st:", st);
         drawSun(ctx, lon2x(geo.longitude), lat2y(geo.latitude));
         var points = sun.terminator(geo.latitude, geo.longitude,
                                     sun.sun_rst_altitude, w, h);
