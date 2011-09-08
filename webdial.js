@@ -31,9 +31,15 @@ function WebDial(canvas) {
         drawMap();
     }
 
+    function errCallback(xhr, status, error) {
+        console.debug("error: ", xhr, status, error);
+    }
+
     this.go = function() {
         $.ajax("https://raw.github.com/seanlynch/webdial/master/continent.json",
                {dataType: "json",
-                success: mapCallback});
+                success: mapCallback,
+                error: errCallback
+               });
     }
 }
