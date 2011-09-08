@@ -55,7 +55,7 @@ function Sun() {
      *   Right accension in radians
      *   Declination in radians
      */
-    function ecl_to_equ(lon, lat, obl) {
+    this.ecl_to_equ = function(lon, lat, obl) {
         var cose = Math.cos(obl);
         var sine = Math.sin(obl);
         var sinl = Math.sin(lon);
@@ -63,7 +63,7 @@ function Sun() {
                                    Math.cos(lon)));
         var dec = Math.asin(Math.sin(lon) * cose + Math.cos(lat) * sine * sinl);
         return {"ra": ra, "dec": dec};
-    }
+    };
 
     this.equ_to_geo = function(ra, dec, st) {
         var lon = r_to_d(ra - st);
