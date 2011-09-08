@@ -2,15 +2,7 @@ function WebDial(canvas) {
     var continents;
     var sun = new Sun();
 
-    function drawPoly(ctx, w, h, points) {
-        function lon2x(lon) {
-            return (lon + 180.0) * w / 360.0;
-        }
-
-        function lat2y(lat) {
-            return (90.0 - lat) * h / 180.0;
-        }
-
+    function drawPoly(ctx, lon2x, lat2y, points) {
         ctx.beginPath();
         ctx.moveTo(lon2x(points[0][0]), lat2y(points[0][1]));
         var i;
@@ -31,7 +23,14 @@ function WebDial(canvas) {
         });
     }
 
-    function drawNight(ctx, w, h) {
+    function drawSun(ctx, x, y) {
+        ctx.fillstyle = "rgb(0, 0, 0)";
+        ctx.beginPath();
+        ctx.arc(x, y, 5, 0, PI2, true);
+        ctx.stroke();
+    }
+
+    function drawNight(ctx, lon2x, lat2y) {
         var jd = sun.cal_to_jd(new Date());
         var epsilon = sun.obliquity(jd);
         var geometric_lon = sun.longitude_radius_low(jd).longitude;
@@ -39,21 +38,30 @@ function WebDial(canvas) {
         var equ = sun.ecl_to_equ(lon, 0.0, epsilon);
         var st = sun.sidereal_time_greenwich(jd);
         var geo = sun.equ_to_geo(equ.ra, equ.dec, st);
+        drawSun(ctx, lon2x(geo.longitude), lat2y(geo.latitude));
         var points = sun.terminator(geo.latitude, geo.longitude,
                                     sun.sun_rst_altitude, w, h);
         console.debug(points);
-        ctx.fillStyle = "rgb(0, 0, 0)";
+        ctx.fillStyle = "rgba(0, 0, 0, 0.25)";
         drawPoly(ctx, w, h, points);
     }
 
     function draw() {
         var w = canvas.width();
         var h = canvas.height();
+        function lon2x(lon) {
+            return (lon + 180.0) * w / 360.0;
+        }
+
+        function lat2y(lat) {
+            return (90.0 - lat) * h / 180.0;
+        }
+
         var ctx = canvas[0].getContext("2d");
         canvas[0].width = w;
         canvas[0].height = h;
-        drawMap(ctx, w, h);
-        drawNight(ctx, w, h);
+        drawMap(ctx, lon2x, lat2y);
+        drawNight(ctx, lon2x, lat2y);
     }
 
     function mapCallback(data) {
