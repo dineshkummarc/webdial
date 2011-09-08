@@ -2,16 +2,6 @@ function WebDial(canvas) {
     var continents;
 
     function drawPoly(ctx, w, h, points) {
-        ctx.beginPath();
-        var lastPoint = points[points.length-1];
-        ctx.moveTo(lon2x(lastPoint[1]), lat2y(lastPoint[0]));
-        $.each(points, function(j, point) {
-            ctx.lineTo(lon2x(point[1]), lat2y(point[0]));
-        });
-        ctx.fill();
-    }
-
-    function drawMap(ctx, w, h) {
         function lon2x(lon) {
             return Math.round((lon + 180.0) * w / 360.0);
         }
@@ -20,10 +10,21 @@ function WebDial(canvas) {
             return Math.round((90.0 - lat) * h / 180.0);
         }
 
+        ctx.beginPath();
+        var lastPoint = points[points.length-1];
+        ctx.moveTo(lon2x(lastPoint[0]), lat2y(lastPoint[1]));
+        $.each(points, function(j, point) {
+            ctx.lineTo(lon2x(point[0]), lat2y(point[1]));
+        });
+        ctx.fill();
+    }
+
+    function drawMap(ctx, w, h) {
         ctx.fillStyle = "rgb(0, 192, 0)";
         $.each(continents, function(continent, polygons) {
             console.debug("Drawing", continent);
             $.each(polygons, function(i, points) {
+                drawPoly(ctx, w, h, points);
             });
         });
     }
@@ -41,10 +42,8 @@ function WebDial(canvas) {
                                     Sun.sun_rst_altitude, w, h);
         ctx.beginPath();
         var lastPoint = points[points.length-1];
-        ctx.moveTo(lon2)
-        $.each(points, function(i, point) {
-            
-        });
+        ctx.moveTo(lon2);
+        drawPoly(ctx, w, h, points);
     }
 
     function draw() {
