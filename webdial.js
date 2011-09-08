@@ -47,8 +47,8 @@ function WebDial(canvas) {
 
     function draw() {
         var ctx = canvas[0].getContext("2d");
-        var w = window.innerWidth;
-        var h = window.innerHeight;
+        var w = $("body")[0].innerWidth;
+        var h = $("body")[0].innerHeight;
         canvas[0].width = w;
         canvas[0].height = h;
         drawMap(ctx, w, h);
