@@ -28,7 +28,7 @@ function WebDial(canvas) {
         ctx.fillStyle = "rgb(0, 0, 0)";
         ctx.beginPath();
         console.debug(1);
-        ctx.arc(x, y, 20, 0, PI2, false);
+        ctx.arc(x, y, 20, 0, Math.PI*2, false);
         console.debug(2);
         ctx.fill();
         console.debug("done");
