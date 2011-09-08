@@ -58,6 +58,7 @@ function WebDial(canvas) {
     function mapCallback(data) {
         continents = data;
         draw();
+        $(window).resize(draw);
     }
 
     function errCallback(xhr, status, error) {
