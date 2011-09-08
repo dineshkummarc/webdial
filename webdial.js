@@ -17,7 +17,7 @@ function WebDial(canvas) {
         $.each(points, function(j, point) {
             ctx.lineTo(lon2x(point[0]), lat2y(point[1]));
         });
-        ctx.fill();
+        ctx.stroke();
     }
 
     function drawMap(ctx, w, h) {
@@ -41,7 +41,7 @@ function WebDial(canvas) {
         var points = sun.terminator(geo.latitude, geo.longitude,
                                     sun.sun_rst_altitude, w, h);
         console.debug(points);
-        //ctx.fillStyle = "rgba(0, 0, 0, 0.25)";
+        ctx.fillStyle = "rgb(0, 0, 0)";
         drawPoly(ctx, w, h, points);
     }
 
