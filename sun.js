@@ -95,7 +95,7 @@ function Sun() {
     this.cal_to_jd = function(date) {
         var yr = date.getUTCFullYear();
         var mo = date.getUTCMonth() + 1; // WTF???
-        var day = date.getUTCDate() + date.getUTCHours() / 12.0
+        var day = date.getUTCDate() + date.getUTCHours() / 24.0
             + date.getUTCMinutes() / 1440.0
             + date.getUTCSeconds() / 86400.0;
         if (mo <= 2) {
