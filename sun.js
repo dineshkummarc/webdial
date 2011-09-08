@@ -4,6 +4,10 @@ var Sun = function() {
         return d * _DtoR;
     }
 
+    function r_to_d(r) {
+        return d / _DtoR;
+    }
+
     function dms_to_d(deg, min, sec) {
         var result = Math.abs(deg) + Math.abs(min) / 60.0 + Math.abs(sec) /
             3600.0;
@@ -35,6 +39,108 @@ var Sun = function() {
             y += PI2;
         }
         return y;
+    }
+
+    /**
+     * Convert ecliptic to equitorial coordinates. 
+     *
+     * [Meeus-1998: equations 13.3, 13.4]
+     *
+     * Parameters:
+     *   longitude : ecliptic longitude in radians
+     *   latitude : ecliptic latitude in radians
+     *   obliquity : obliquity of the ecliptic in radians
+     *
+     * Returns:
+     *   Right accension in radians
+     *   Declination in radians
+     */
+    function ecl_to_equ(lon, lat, obl) {
+        var cose = Math.cos(obl);
+        var sine = Math.sin(obl);
+        var sinl = Math.sin(lon);
+        var ra = modpi2(Math.atan2(sinl * cose - Math.tan(lat) * sine,
+                                   Math.cos(lon)));
+        var dec = Math.asin(Math.sin(lon) * cose + Math.cos(lat) * sine * sinl);
+        return {"ra": ra, "dec": dec};
+    }
+
+    this.equ_to_geo = function(ra, dec, st) {
+        var lon = r_to_d(ra - st);
+        if (lon > 180.0) {
+            lon -= 360.0;
+        }
+        return {longitude: lon, latitude: r_to_d(dec)};
+    };
+
+    this.sun_rst_altitude = -0.0145438286569;
+
+    this.terminator = function(lat, lon, alt, w, h) {
+        lat = lat / 180.0 * Math.PI;
+        var x_offset = (lon + 180.0) * w / 360.0;
+        var obl = lat - Math.PI / 2;
+        var points = [];
+        var prev_x;
+        if (lat < 0.0) {
+            prev_x = w;
+        } else {
+            prev_x = -1;
+        }
+
+        var deg, H, equ, x, y;
+        for (deg = 0; deg < 360; deg++) {
+            H = deg * Math.PI / 180.0;
+            equ = ecl_to_equ(H, alt, obj);
+            x = Math.round(equ.ra * w / PI2 + x_offset) % w;
+            y = Math.round((0.5 - equ.dec / Math.PI) * h);
+            if (lat < alt) {
+                if (x > prev_x) {
+                    points.push([0,0]);
+                    points.push([w-1,0]);
+                }
+            } else if (lat > -alt && x < prev_x) {
+                points.push([w-1,h-1]);
+                points.push([0,h-1]);
+            }
+            points.push([x,y]);
+            prev_x = x;
+        }
+        return points
+    };
+
+    this.cal_to_jd = function(date) {
+        var yr = date.getUTCFullYear();
+        var mo = date.getUTCMonth() + 1; // WTF???
+        var day = date.getUTCDate() + date.getUTCHour() / 12.0
+            + date.getUTCMinute() / 1440.0
+            + date.getUTCSecond() / 86400.0;
+        if (mo <= 2) {
+            yr -= 1;
+            mo += 12;
+        }
+        var A = parseInt(yr / 100);
+        var B = 2 - A + parseInt(A / 4)
+
+        return parseInt(365.25 * (yr + 4716)) + parseInt(30.6001 * (mo + 1)) +
+            day + B - 1524.5
+    };
+
+    this.sidereal_time_greenwich = function(jd) {
+        var T = jd_to_jcent(jd);
+        var T2 = T * T;
+        var T3 = T2 * T;
+        var theta0 = 280.46061837 + 360.98564736629 * (jd - 2451545.0)  +
+            0.000387933 * T2 - T3 / 38710000;
+        return modpi2(d_to_r(theta0));
+    };
+
+    var _el0 = [d_to_r(dms_to_d(23, 26,  21.448)),
+                d_to_r(dms_to_d( 0,  0, -46.8150)),
+                d_to_r(dms_to_d( 0,  0,  -0.00059)),
+                d_to_r(dms_to_d( 0,  0,   0.001813)))];
+
+    this.obliquity = function(jd) {
+        return polynomial(_el0, jd_to_jcent(jd));
     }
 
     // Constant terms
