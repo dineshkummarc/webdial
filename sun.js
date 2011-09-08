@@ -80,30 +80,15 @@ function Sun() {
         var x_offset = (lon + 180.0) * w / 360.0;
         var obl = lat - Math.PI / 2;
         var points = [];
-        var prev_x;
-        if (lat < 0.0) {
-            prev_x = w;
-        } else {
-            prev_x = -1;
-        }
-
-        var deg, H, equ, x, y;
+        var deg, H, equ, x, y, px, py;
         for (deg = 0; deg < 360; deg++) {
-             H = deg * Math.PI / 180.0;
+            H = deg * Math.PI / 180.0;
             equ = this.ecl_to_equ(H, alt, obl);
             x = Math.round(equ.ra * w / PI2 + x_offset) % w;
             y = Math.round((0.5 - equ.dec / Math.PI) * h);
-            if (lat < alt) {
-                if (x > prev_x) {
-                    points.push([0,0]);
-                    points.push([w-1,0]);
-                }
-            } else if (lat > -alt && x < prev_x) {
-                points.push([w-1,h-1]);
-                points.push([0,h-1]);
-            }
             points.push([x,y]);
             prev_x = x;
+            prev_y = y;
         }
         return points
     };
