@@ -31,27 +31,16 @@ function WebDial(canvas) {
     }
 
     function drawNight(ctx, w, h) {
-        console.debug(1);
         ctx.fillStyle = "rgba(0, 0, 0, 128)";
-        console.debug(sun);
         var jd = sun.cal_to_jd(new Date());
-        console.debug(3);
         var epsilon = sun.obliquity(jd);
-        console.debug(4);
         var geometric_lon = sun.longitude_radius_low(jd).longitude;
-        console.debug(5);
         var lon = sun.apparent_longitude_low(jd, geometric_lon);
-        console.debug(6);
         var equ = sun.ecl_to_equ(lon, 0.0, epsilon);
-        console.debug(7);
         var st = sun.sidereal_time_greenwich(jd);
-        console.debug(8);
         var geo = sun.equ_to_geo(equ.ra, equ.dec, st);
-        console.debug(9);
         var points = sun.terminator(geo.latitude, geo.longitude,
                                     sun.sun_rst_altitude, w, h);
-        console.debug(points);
-        ctx.beginPath();
         drawPoly(ctx, w, h, points);
     }
 

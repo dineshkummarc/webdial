@@ -76,10 +76,8 @@ function Sun() {
     this.sun_rst_altitude = -0.0145438286569;
 
     this.terminator = function(lat, lon, alt, w, h) {
-        console.debug(lat, lon, alt, w, h);
         lat = lat / 180.0 * Math.PI;
         var x_offset = (lon + 180.0) * w / 360.0;
-        console.debug("x_offset", x_offset);
         var obl = lat - Math.PI / 2;
         var points = [];
         var prev_x;
@@ -91,8 +89,7 @@ function Sun() {
 
         var deg, H, equ, x, y;
         for (deg = 0; deg < 360; deg++) {
-            console.debug(deg);
-            H = deg * Math.PI / 180.0;
+             H = deg * Math.PI / 180.0;
             equ = this.ecl_to_equ(H, alt, obl);
             x = Math.round(equ.ra * w / PI2 + x_offset) % w;
             y = Math.round((0.5 - equ.dec / Math.PI) * h);
