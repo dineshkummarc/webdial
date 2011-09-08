@@ -86,9 +86,11 @@ function Sun() {
             equ = this.ecl_to_equ(H, alt, obl);
             x = Math.round(equ.ra * w / PI2 + x_offset) % w;
             y = Math.round((0.5 - equ.dec / Math.PI) * h);
+            if (px !== undefined && (Math.abs(x-px) > w / 2
+                                     || Math.abs(y-py) > y / 2)) break;
             points.push([x,y]);
-            prev_x = x;
-            prev_y = y;
+            px = x;
+            py = y;
         }
         return points
     };
