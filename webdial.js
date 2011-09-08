@@ -17,6 +17,7 @@ function WebDial(canvas) {
         for (i = 1; i < points.length; i++ ) {
             ctx.lineTo(lon2x(points[i][0]), lat2y(points[i][1]));
         }
+        ctx.closePath();
         ctx.fill();
     }
 
@@ -51,7 +52,7 @@ function WebDial(canvas) {
         var ctx = canvas[0].getContext("2d");
         canvas[0].width = w;
         canvas[0].height = h;
-        //drawMap(ctx, w, h);
+        drawMap(ctx, w, h);
         drawNight(ctx, w, h);
     }
 
