@@ -1,4 +1,4 @@
-var Sun = function() {
+function Sun() {
     var _DtoR = Math.PI / 180.0;
     function d_to_r(d) {
         return d * _DtoR;
@@ -221,4 +221,4 @@ var Sun = function() {
     this.aberration_low = function(R) {
         return -_lk4 / R
     };
-}();
+};
