@@ -4,11 +4,11 @@ function WebDial(canvas) {
 
     function drawPoly(ctx, w, h, points) {
         function lon2x(lon) {
-            return Math.round((lon + 180.0) * w / 360.0);
+            return (lon + 180.0) * w / 360.0;
         }
 
         function lat2y(lat) {
-            return Math.round((90.0 - lat) * h / 180.0);
+            return (90.0 - lat) * h / 180.0;
         }
 
         ctx.beginPath();
@@ -47,8 +47,10 @@ function WebDial(canvas) {
 
     function draw() {
         var ctx = canvas[0].getContext("2d");
-        var w = canvas[0].width;
-        var h = canvas[0].height;
+        var w = window.innerWidth;
+        var h = window.innerHeight;
+        canvas[0].width = w;
+        canvas[0].height = h;
         drawMap(ctx, w, h);
         drawNight(ctx, w, h);
     }
