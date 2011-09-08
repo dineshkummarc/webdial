@@ -40,7 +40,8 @@ function WebDial(canvas) {
         var geo = sun.equ_to_geo(equ.ra, equ.dec, st);
         var points = sun.terminator(geo.latitude, geo.longitude,
                                     sun.sun_rst_altitude, w, h);
-        ctx.fillStyle = "rgba(0, 0, 0, 0.25)";
+        console.debug(points);
+        //ctx.fillStyle = "rgba(0, 0, 0, 0.25)";
         drawPoly(ctx, w, h, points);
     }
 
