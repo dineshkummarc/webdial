@@ -137,7 +137,7 @@ var Sun = function() {
     var _el0 = [d_to_r(dms_to_d(23, 26,  21.448)),
                 d_to_r(dms_to_d( 0,  0, -46.8150)),
                 d_to_r(dms_to_d( 0,  0,  -0.00059)),
-                d_to_r(dms_to_d( 0,  0,   0.001813)))];
+                d_to_r(dms_to_d( 0,  0,   0.001813))];
 
     this.obliquity = function(jd) {
         return polynomial(_el0, jd_to_jcent(jd));
