@@ -15,6 +15,7 @@ function WebDial(canvas) {
         var ctx = canvas[0].getContext("2d");
         ctx.fillStyle = "rgb(0, 192, 0)";
         $.each(continents, function(continent, polygons) {
+            console.debug("Drawing", continent);
             $.each(polygons, function(i, points) {
                 ctx.beginPath();
                 ctx.moveTo(points[points.length-1]);
