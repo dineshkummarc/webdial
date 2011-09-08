@@ -12,11 +12,11 @@ function WebDial(canvas) {
         }
 
         ctx.beginPath();
-        var lastPoint = points[points.length-1];
-        ctx.moveTo(lon2x(lastPoint[0]), lat2y(lastPoint[1]));
-        $.each(points, function(j, point) {
-            ctx.lineTo(lon2x(point[0]), lat2y(point[1]));
-        });
+        ctx.moveTo(lon2x(points[0][0]), lat2y(points[0][1]));
+        var i;
+        for (i = 1; i < points.length; i++ ) {
+            ctx.lineTo(lon2x(points[i][0]), lat2y(points[i][1]));
+        }
         ctx.fill();
     }
 
