@@ -2,14 +2,12 @@ function WebDial(canvas) {
     var continents;
 
     function drawMap() {
-        var w = canvas.width();
-        var h = canvas.height();
         function lon2x(lon) {
-            return Math.round((lon + 180.0) * w / 360.0);
+            return (lon + 180.0);
         }
 
         function lat2y(lat) {
-            return Math.round((90.0 - lat) * h / 180.0);
+            return (90.0 - lat);
         }
 
         var ctx = canvas[0].getContext("2d");
