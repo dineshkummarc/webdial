@@ -75,19 +75,16 @@ function Sun() {
 
     this.sun_rst_altitude = -0.0145438286569;
 
-    this.terminator = function(lat, lon, alt, w, h) {
+    this.terminator = function(lat, lon, alt) {
         lat = lat / 180.0 * Math.PI;
-        var x_offset = (lon + 180.0) * w / 360.0;
         var obl = lat - Math.PI / 2;
         var points = [];
         var deg, H, equ, x, y, px, py;
         for (deg = 0; deg < 360; deg++) {
             H = deg * Math.PI / 180.0;
             equ = this.ecl_to_equ(H, alt, obl);
-            x = Math.round(equ.ra * w / PI2 + x_offset) % w;
-            y = Math.round((0.5 - equ.dec / Math.PI) * h);
-            if (px !== undefined && (Math.abs(x-px) > w / 2
-                                     || Math.abs(y-py) > y / 2)) break;
+            x = Math.round(equ.ra * 180.0 / Math.PI + lon) % 360;
+            y = Math.round((0.5 - equ.dec / Math.PI) * 180);
             points.push([x,y]);
             px = x;
             py = y;
