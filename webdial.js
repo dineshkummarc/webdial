@@ -27,7 +27,7 @@ function WebDial(canvas) {
         console.debug("drawSun ", x, y);
         ctx.fillStyle = "rgb(0, 0, 0)";
         ctx.beginPath();
-        ctx.arc(x, y, 5, 0, PI2, true);
+        ctx.arc(x, y, 5, 0, PI2, false);
         ctx.stroke();
     }
 
