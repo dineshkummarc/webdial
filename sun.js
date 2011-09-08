@@ -5,7 +5,7 @@ function Sun() {
     }
 
     function r_to_d(r) {
-        return d / _DtoR;
+        return r / _DtoR;
     }
 
     function dms_to_d(deg, min, sec) {
