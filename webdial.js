@@ -17,10 +17,8 @@ function WebDial(canvas) {
         $.each(continents, function(continent, polygons) {
             console.debug("Drawing", continent);
             $.each(polygons, function(i, points) {
-                console.debug("Drawing", points.length, "points");
                 ctx.beginPath();
                 var lastPoint = points[points.length-1];
-                console.debug(lon2x(lastPoint[1]), lat2y(lastPoint[0]));
                 ctx.moveTo(lon2x(lastPoint[1]), lat2y(lastPoint[0]));
                 $.each(points, function(j, point) {
                     ctx.lineTo(lon2x(point[1]), lat2y(point[0]));
