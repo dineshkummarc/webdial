@@ -24,14 +24,10 @@ function WebDial(canvas) {
     }
 
     function drawSun(ctx, x, y) {
-        console.debug("drawSun ", x, y);
-        ctx.fillStyle = "rgb(0, 0, 0)";
+        ctx.strokeStyle = "rgb(192, 192, 0)";
         ctx.beginPath();
-        console.debug(1);
-        ctx.arc(x, y, 20, 0, Math.PI*2, false);
-        console.debug(2);
-        ctx.fill();
-        console.debug("done");
+        ctx.arc(x, y, 5, 0, Math.PI*2, false);
+        ctx.stroke();
     }
 
     function drawNight(ctx, lon2x, lat2y) {
