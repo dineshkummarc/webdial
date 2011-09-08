@@ -8,5 +8,18 @@
 
 
 
-<script>
+<canvas id="webdial" style="height: 100%; width: 100%;" />
+<script
+src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js">
+</script>
+<script
+src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js">
+</script>
+<script src="https://raw.github.com/seanlynch/webdial/master/sun.js"></script>
+<script
+src="https://raw.github.com/seanlynch/webdial/master/webdial.js"></script>
+<script type="text/javascript">
+var webdial = WebDial($("#webdial"));
+webdial.go();
+</script>
 </body> </html>
