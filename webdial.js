@@ -36,7 +36,7 @@ function WebDial(canvas) {
     }
 
     this.go = function() {
-        $.ajax("https://raw.github.com/seanlynch/webdial/master/continent.json",
+        $.ajax("continent.json",
                {dataType: "json",
                 success: mapCallback,
                 error: errCallback
