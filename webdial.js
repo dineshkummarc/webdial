@@ -5,11 +5,11 @@ function WebDial(canvas) {
         var w = canvas.width();
         var h = canvas.height();
         function lon2x(lon) {
-            return (lon + 180.0) * w / 360.0;
+            return Math.round((lon + 180.0) * w / 360.0);
         }
 
         function lat2y(lat) {
-            return (90.0 - lat) * h / 180.0;
+            return Math.round((90.0 - lat) * h / 180.0);
         }
 
         var ctx = canvas[0].getContext("2d");
@@ -20,7 +20,7 @@ function WebDial(canvas) {
                 console.debug("Drawing", points.length, "points");
                 ctx.beginPath();
                 var lastPoint = points[points.length-1];
-                console.debug(lon2x(lastPoint[0]), lat2y(lastPoint[1]));
+                console.debug(lon2x(lastPoint[1]), lat2y(lastPoint[0]));
                 ctx.moveTo(lon2x(lastPoint[0]), lat2y(lastPoint[1]));
                 $.each(points, function(j, point) {
                     ctx.lineTo(lon2x(point[0]), lat2y(point[1]));
