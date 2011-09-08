@@ -31,7 +31,6 @@ function WebDial(canvas) {
     }
 
     function drawNight(ctx, w, h) {
-        ctx.fillStyle = "rgba(0, 0, 0, 128)";
         var jd = sun.cal_to_jd(new Date());
         var epsilon = sun.obliquity(jd);
         var geometric_lon = sun.longitude_radius_low(jd).longitude;
@@ -41,6 +40,7 @@ function WebDial(canvas) {
         var geo = sun.equ_to_geo(equ.ra, equ.dec, st);
         var points = sun.terminator(geo.latitude, geo.longitude,
                                     sun.sun_rst_altitude, w, h);
+        ctx.fillStyle = "rgba(0, 0, 0, 0.25)";
         drawPoly(ctx, w, h, points);
     }
 
