@@ -61,7 +61,7 @@ function Sun() {
         var sinl = Math.sin(lon);
         var ra = modpi2(Math.atan2(sinl * cose - Math.tan(lat) * sine,
                                    Math.cos(lon)));
-        var dec = Math.asin(Math.sin(lon) * cose + Math.cos(lat) * sine * sinl);
+        var dec = Math.asin(Math.sin(lat) * cose + Math.cos(lat) * sine * sinl);
         return {"ra": ra, "dec": dec};
     };
 
