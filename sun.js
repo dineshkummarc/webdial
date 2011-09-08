@@ -93,7 +93,7 @@ function Sun() {
         for (deg = 0; deg < 360; deg++) {
             console.debug(deg);
             H = deg * Math.PI / 180.0;
-            equ = this.ecl_to_equ(H, alt, obj);
+            equ = this.ecl_to_equ(H, alt, obl);
             x = Math.round(equ.ra * w / PI2 + x_offset) % w;
             y = Math.round((0.5 - equ.dec / Math.PI) * h);
             if (lat < alt) {
