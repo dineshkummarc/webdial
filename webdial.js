@@ -32,7 +32,7 @@ function WebDial(canvas) {
     function drawNight(ctx, w, h) {
         console.debug(1);
         ctx.fillStyle = "rgba(0, 0, 0, 128)";
-        console.debug(2);
+        console.debug(Sun);
         var jd = Sun.cal_to_jd(new Date());
         console.debug(3);
         var epsilon = Sun.obliquity(jd);
