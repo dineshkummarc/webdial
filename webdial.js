@@ -17,7 +17,7 @@ function WebDial(canvas) {
         $.each(points, function(j, point) {
             ctx.lineTo(lon2x(point[0]), lat2y(point[1]));
         });
-        ctx.stroke();
+        ctx.fill();
     }
 
     function drawMap(ctx, w, h) {
