@@ -5,7 +5,8 @@ var Sun = function() {
     }
 
     function dms_to_d(deg, min, sec) {
-        var result = Math.abs(deg) + Math.abs(min) / 60.0 + abs(sec) / 3600.0;
+        var result = Math.abs(deg) + Math.abs(min) / 60.0 + Math.abs(sec) /
+            3600.0;
         if (deg < 0 || min < 0 || sec < 0) {
             result = -result;
         }
