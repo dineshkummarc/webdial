@@ -30,14 +30,23 @@ function WebDial(canvas) {
     }
 
     function drawNight(ctx, w, h) {
+        console.debug(1);
         ctx.fillStyle = "rgba(0, 0, 0, 128)";
+        console.debug(2);
         var jd = Sun.cal_to_jd(new Date());
+        console.debug(3);
         var epsilon = Sun.obliquity(jd);
+        console.debug(4);
         var geometric_lon = Sun.longitude_radius_low(jd).longitude;
+        console.debug(5);
         var lon = Sun.apparent_longitude_low(jd, geometric_lon);
+        console.debug(6);
         var equ = Sun.ecl_to_equ(lon, 0.0, epsilon);
+        console.debug(7);
         var st = Sun.sidereal_time_greenwich(jd);
+        console.debug(8);
         var geo = Sun.equ_to_geo(ra, dec, st);
+        console.debug(9);
         var points = Sun.terminator(geo.latitude, geo.longitude,
                                     Sun.sun_rst_altitude, w, h);
         console.debug(points);
