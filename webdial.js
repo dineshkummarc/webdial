@@ -3,11 +3,11 @@ function WebDial(canvas) {
 
     function drawMap() {
         function lon2x(lon) {
-            return Math.round((lon + 180.0) * 1000.0);
+            return Math.round((lon + 180.0) * 10.0);
         }
 
         function lat2y(lat) {
-            return Math.round((90.0 - lat) * 1000.0);
+            return Math.round((90.0 - lat) * 10.0);
         }
 
         var ctx = canvas[0].getContext("2d");
