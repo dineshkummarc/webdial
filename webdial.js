@@ -21,9 +21,9 @@ function WebDial(canvas) {
                 ctx.beginPath();
                 var lastPoint = points[points.length-1];
                 console.debug(lon2x(lastPoint[1]), lat2y(lastPoint[0]));
-                ctx.moveTo(lon2x(lastPoint[0]), lat2y(lastPoint[1]));
+                ctx.moveTo(lon2x(lastPoint[1]), lat2y(lastPoint[0]));
                 $.each(points, function(j, point) {
-                    ctx.lineTo(lon2x(point[0]), lat2y(point[1]));
+                    ctx.lineTo(lon2x(point[1]), lat2y(point[0]));
                 });
                 ctx.fill();
             });
