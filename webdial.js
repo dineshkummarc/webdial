@@ -51,7 +51,7 @@ function WebDial(canvas) {
         var ctx = canvas[0].getContext("2d");
         canvas[0].width = w;
         canvas[0].height = h;
-        drawMap(ctx, w, h);
+        //drawMap(ctx, w, h);
         drawNight(ctx, w, h);
     }
 
