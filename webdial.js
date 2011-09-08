@@ -20,6 +20,7 @@ function WebDial(canvas) {
                 console.debug("Drawing", points.length, "points");
                 ctx.beginPath();
                 var lastPoint = points[points.length-1];
+                console.debug(lon2x(lastPoint[0]), lat2y(lastPoint[1]));
                 ctx.moveTo(lon2x(lastPoint[0]), lat2y(lastPoint[1]));
                 $.each(points, function(j, point) {
                     ctx.lineTo(lon2x(point[0]), lat2y(point[1]));
