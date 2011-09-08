@@ -27,8 +27,11 @@ function WebDial(canvas) {
         console.debug("drawSun ", x, y);
         ctx.fillStyle = "rgb(0, 0, 0)";
         ctx.beginPath();
+        console.debug(1);
         ctx.arc(x, y, 20, 0, PI2, false);
+        console.debug(2);
         ctx.fill();
+        console.debug("done");
     }
 
     function drawNight(ctx, lon2x, lat2y) {
