@@ -66,6 +66,7 @@ function Sun() {
     };
 
     this.equ_to_geo = function(ra, dec, st) {
+        console.debug(ra, dec, st);
         var lon = r_to_d(ra - st);
         console.debug("lon", lon);
         if (lon > 180.0) {
