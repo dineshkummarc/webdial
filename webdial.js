@@ -46,7 +46,7 @@ function WebDial(canvas) {
         console.debug(7);
         var st = sun.sidereal_time_greenwich(jd);
         console.debug(8);
-        var geo = sun.equ_to_geo(ra, dec, st);
+        var geo = sun.equ_to_geo(equ.ra, equ.dec, st);
         console.debug(9);
         var points = sun.terminator(geo.latitude, geo.longitude,
                                     sun.sun_rst_altitude, w, h);
