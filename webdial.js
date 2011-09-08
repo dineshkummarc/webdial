@@ -33,6 +33,7 @@ function WebDial(canvas) {
 
     this.go = function() {
         $.ajax("https://raw.github.com/seanlynch/webdial/master/continent.json",
-               {success: mapCallback});
+               {dataType: "json",
+                success: mapCallback});
     }
 }
