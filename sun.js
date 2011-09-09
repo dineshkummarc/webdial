@@ -91,8 +91,8 @@ function Sun() {
                     points.push([359,0]);
                 }
             } else if (lat > -alt && x < px) {
-                points.push([w-1,h-1]);
-                points.push([0,h-1]);
+                points.push([359,179]);
+                points.push([0,179]);
             }
             points.push([x,y]);
             px = x;
