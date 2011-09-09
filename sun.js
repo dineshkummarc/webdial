@@ -84,7 +84,7 @@ function Sun() {
             H = deg * Math.PI / 180.0;
             equ = this.ecl_to_equ(H, alt, obl);
             x = (180 + equ.ra * 180.0 / Math.PI) % 360;
-            y = (0.5 - equ.dec / Math.PI) * 180;
+            y = (0.5 - equ.dec / Math.PI) * 180 - 90;
             points.push([x,y]);
             px = x;
             py = y;
