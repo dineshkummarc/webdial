@@ -13,12 +13,12 @@ function WebDial(canvas) {
         ctx.fill();
     }
 
-    function drawMap(ctx, w, h) {
+    function drawMap(ctx, lon2x, lat2y) {
         ctx.fillStyle = "rgb(0, 192, 0)";
         $.each(continents, function(continent, polygons) {
             console.debug("Drawing", continent);
             $.each(polygons, function(i, points) {
-                drawPoly(ctx, w, h, points);
+                drawPoly(ctx, lon2x, lat2y, points);
             });
         });
     }
@@ -42,10 +42,10 @@ function WebDial(canvas) {
                       geometric_lon, "equ:", equ, "geo:", geo, "st:", st);
         drawSun(ctx, lon2x(geo.longitude), lat2y(geo.latitude));
         var points = sun.terminator(geo.latitude, geo.longitude,
-                                    sun.sun_rst_altitude, w, h);
+                                    sun.sun_rst_altitude);
         console.debug(points);
         ctx.fillStyle = "rgba(0, 0, 0, 0.25)";
-        drawPoly(ctx, w, h, points);
+        drawPoly(ctx, lon2x, lat2y, points);
     }
 
     function draw() {
