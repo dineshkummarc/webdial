@@ -83,8 +83,17 @@ function Sun() {
         for (deg = 0; deg < 360; deg++) {
             H = deg * Math.PI / 180.0;
             equ = this.ecl_to_equ(H, alt, obl);
-            x = (180 + equ.ra * 180.0 / Math.PI) % 360;
-            y = (0.5 - equ.dec / Math.PI) * 180 - 90;
+            x = equ.ra * 180.0 / Math.PI;
+            y = (0.5 - equ.dec / Math.PI) * 180;
+            if (lat < alt) {
+                if (x > px) {
+                    points.push([0,0]);
+                    points.push([359,0]);
+                }
+            } else if (lat > -alt && x < px) {
+                points.push([w-1,h-1]);
+                points.push([0,h-1]);
+            }
             points.push([x,y]);
             px = x;
             py = y;
