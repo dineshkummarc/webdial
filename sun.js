@@ -80,7 +80,7 @@ function Sun() {
         var obl = lat - Math.PI / 2;
         var points = [];
         var deg, H, equ, x, y, px, py;
-        for (deg = 0; deg < 360; deg++) {
+        for (deg = 0; deg < 360; deg += 2) {
             H = deg * Math.PI / 180.0;
             equ = this.ecl_to_equ(H, alt, obl);
             x = equ.ra * 180.0 / Math.PI;
@@ -214,4 +214,4 @@ function Sun() {
     this.aberration_low = function(R) {
         return -_lk4 / R
     };
-};
+}
